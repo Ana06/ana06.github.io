@@ -1,0 +1,128 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This CV is based on the template from Trey Hunner (http://www.treyhunner.com),
+% downloaded from http://www.LaTeXTemplates.com and licensed under Creative
+% Commons CC BY 4.0
+%
+% Important note:
+% The resume.cls file is required to be in the same directory as the .tex file.
+% It provides the resume style used for structuring the document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{cv} % Use cv.cls style
+
+\usepackage[left=0.54in,top=0.8in,right=0.50in,bottom=0.4in]{geometry} % Document margins
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{color}
+\definecolor{Blue}{RGB}{0,11,169}
+\usepackage{fontawesome}
+\usepackage{enumitem}
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+\renewcommand{\familydefault}{\rmdefault}
+\renewcommand*\rmdefault{cmr}
+
+\name{\href{https://anamaria.martinezgomez.name}{Ana Maria Martinez Gomez}}
+
+\headingLine{
+  \href{https://anamaria.martinezgomez.name}{\faUser $ $ https://anamaria.martinezgomez.name} \
+  \href{https://www.linkedin.com/in/ana06/?locale=en\_US}{\faLinkedinSquare $ $ https://www.linkedin.com/in/ana06}
+}
+\headingLine{
+  \href{https://github.com/Ana06}{\faGithub $ $ https://github.com/Ana06} \
+  \href{https://stackoverflow.com/users/6245337}{\faStackOverflow $ $ https://stackoverflow.com/users/6245337}
+}
+\headingLine{
+  \href{anamaria@martinezgomez.name}{\faEnvelope $ $ anamaria@martinezgomez.name} \
+  \href{https://twitter.com/anamma\_06}{\faTwitter $ $ https://twitter.com/anamma\_06}
+}
+
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%  Education section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+
+\rSubsection{Master of Science in Computer Science, Theory track}{Aug 2019 - Dec 2020}{Columbia University}{New York, USA}{GPA: 3.67/4}{Courses: Advanced Algorithms, Computational Complexity, Advanced Cryptography, Malware \& Reverse Engineering}{}{}
+
+\rSubsection{Bachelor's Degree in Computer Science and Engineering}{Sep 2011 - Jul 2016}{Universidad Complutense de Madrid}{Madrid, Spain}{GPA: 9.04/10, top 10\% of graduating class}{}{}{}
+
+\rSubsection{Bachelor's Degree in Mathematics}{Sep 2011 - Jul 2016}{Universidad Complutense de Madrid}{Madrid, Spain}{GPA: 8.11/10}{}{}{}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%  Experience section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Experience}
+
+\rSubsection{Reverse Engineering Intern}{May - Aug 2020}{FireEye}{Remote}{}{}{}{}
+
+\rSubsection{Full-Stack Software Engineer in Open Build Service (OBS)}{Sep 2016 - Jul 2019}{SUSE}{Nuremberg, Germany}{}{Worked on a Ruby on Rails web application to build and distribute Linux packages: designed and implemented features, wrote tests (e.g. unit, property and mutant testing), fixed bugs, refactored code and improved performance.}{Used Ruby, MySQL, PostgreSQL, RSpec, JavaScript, jQuery, HTML, Bootstrap, DataTables, Git, Linux, Docker, Travis}{Carried out code reviews, technical interviews, hold talks and mentored colleagues and students in a remote SCRUM team.}
+
+\rSubsection{Google Summer of Code - Software Developer}{Apr - Aug 2016}{openSUSE}{Remote}{}{Worked on a Ruby on Rails web application to organize events: redesigned the schedule and implemented new features.}{}{}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%  Honors \& Awards section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Honors \& Awards}
+
+\rSubsection{Fellowship to pursue postgraduate studies at North American universities}{2018}{la Caixa Banking Foundation}{}{}{}{}{}
+
+\rSubsection{Excellence Grant for high academic performance university students}{2016}{Community of Madrid}{}{}{}{}{}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%  contributions section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{contributions}
+
+\rSubsectionShort{Contributed to various Open Source projects including:}{\href{https://github.com/openSUSE/open-build-service//commits?author=Ana06}{OBS}, \href{https://github.com/ruby/ruby/pulls?utf8=\%E2\%9C\%93\&q=is\%3Apr+author\%3AAna06+}{Ruby}, \href{https://github.com/rails/rails//commits?author=Ana06}{Rails}, \href{https://github.com/rantly-rb/rantly//commits?author=Ana06}{Rantly}, \href{https://github.com/openSUSE/osem//commits?author=Ana06}{OSEM}, \href{https://github.com/openSUSE/software-o-o//commits?author=Ana06}{software-o-o}, \href{https://github.com/bbatsov/rubocop//commits?author=Ana06}{Rubocop}, \href{https://github.com/jekyll/jekyll//commits?author=Ana06}{Jekyll}, \href{https://github.com/openSUSE/trollolo//commits?author=Ana06}{Trollolo}, \href{https://github.com/ruby-amqp/bunny//commits?author=Ana06}{Bunny}, \href{https://github.com/brigade/haml-lint//commits?author=Ana06}{HAML-Lint}, \href{https://github.com/bkuhlmann/git-cop/pulls?utf8=\%E2\%9C\%93\&q=is\%3Apr+author\%3AAna06+}{GitCop}}
+
+\rSubsectionShort{top 4\% of active users in Stack Overflow in 2018 and top 6\% in 2019}{}
+
+\rSubsectionShort{Mentor/Org admin in Google Summer of Code for openSUSE/FOSDEM 2017-2019}{}
+
+\rSubsectionShort{openSUSE Board member 2018-2019}{}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%  latest invited talks section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{latest invited talks}
+
+\rSubsectionTalk{The Biggest Mobprogramming Session Ever}{http://ana06.me/1s9}{RubyConfBY 2019 (Minsk, Belarus)}{}{250}
+
+\rSubsectionTalk{Why open source? (Spanish)}{http://ana06.me/1kt}{Universidad Complutense de Madrid 2018 (Madrid, Spain)}{}{300}
+
+\rSubsectionTalk{Let’s Refactor Some Ruby Code}{http://ana06.me/1ku}{European Ruby Conference (EuRuKo) 2018 (Vienna, Austria)}{}{500}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%  personal section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{personal}
+
+I am interested in programming challenges, theoretical CS and security. In my free time, I contribute to Open Source, write in my blog (\url{http://ana06.me/1zk}), attend conferences and paint (\url{http://ana06.me/1zm}).
+\end{rSection}
+
+\end{document}

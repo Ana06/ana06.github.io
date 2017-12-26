@@ -1,0 +1,16 @@
+{% if site.data.cv.contributions.projects.size >= 0 %}
+
+<h6>
+Contributed to various Open Source projects including:&nbsp;
+
+{% for project in site.data.cv.contributions.projects %}
+  {% include resume/project_link.html
+               title=project.title
+               prs-url=project.prs-url
+               commits-url=project.commits-url
+               project-url=project.project-url
+               url=project.url %}
+{% endfor %}
+</h6>
+<hr>
+{% endif %}

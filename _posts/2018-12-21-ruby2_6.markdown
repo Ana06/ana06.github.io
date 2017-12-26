@@ -1,0 +1,177 @@
+---
+layout: post
+title: Ruby 2.6
+tags:
+  - technical
+  - Ruby
+reads: "8500+"
+description: "Christmas is around the corner, but I couldn't wait and I have already been trying the new Ruby release! :christmas_tree: :tada:
+Ruby 2.6, apart from efficiency improvements, which include the initial implementation of a just-in-time compiler, brings us many new cool features.
+Taking advance of the cold outside, let's discover some of them! :snowflake:"
+---
+
+Christmas is around the corner, but I couldn't wait and I have already been trying the new Ruby release! :christmas_tree: :tada:
+Ruby 2.6, apart from efficiency improvements, which include the initial implementation of a just-in-time compiler, brings us many new cool features.
+Taking advance of the cold outside, let's discover some of them! :snowflake:
+
+
+## Array#union & Array#difference
+
+This Ruby version is particularly special to me because it includes my two new methods for the Array class, which I presented in my talks at [EuRuKo](https://youtu.be/jUc8InwoA-E?t=2m54s){:target="_blank"} and [Brighton Ruby](https://brightonruby.com/2018/lets-refactor-some-ruby-code-ana-martinez){:target="_blank"}. `Array#union` and `Array#difference` are just readable alias for `Array#|` and `Array#-` respectively when only having two arrays:
+
+```ruby
+[1, 3, 5, 7, 9].union([2, 3, 4, 5, 6]) #=> [1, 3, 5, 7, 9, 2, 4, 6]
+[1, 1, 3, 3, 5, 7, 9].difference([3, 4, 7]) #=> [1, 1, 5, 9]
+```
+
+`Array#union` is also equivalent to combine `Array#concat` and `Array#uniq` (with the difference that `concat` modifies the array), but more readable.
+But what is really important about those new methods, are the gains in efficiency when having more than two arrays.
+We need some Benchmark now. :wink:
+
+Using `Array.new(num_elements) { Random.rand(20_100_000) }` to create four arrays with 20,000,000, 30,000,000, 8,000,000 and 25,000,000 elements, those are the times for the different options:
+
+- `(array1 | array2 | array3 | array4)`             ~ 20.043 seconds
+- `array1.union(array2, array3, array4)`            ~ 13.390 seconds
+- `array1.concat(array2, array3, array4).uniq`      ~ 20.633 seconds
+
+So please, stop using `concat` + `uniq` :pray: and let's finally refactor some Ruby code! :tada:
+
+
+## Hash#merge with multiple parameters
+
+`Hash#merge` and `Hash#merge!` were only able to merge two hashes at the same time.
+With Ruby 2.6, we can merge as many hashes as we want at once, which provides an performance improvement similar to `Array#union` and `Array#difference` when merging several big hashes.
+
+```ruby
+{ a: 1, b: 2 }.merge({ b: 3, c: 4 }, { d: 5 }) #=> {:a=>1, :b=>3, :c=>4, :d=>5}
+```
+
+## Enumerable#to_h
+
+`Enumerable#to_h` accepts a block which allows to do things that used to require iterating manually or prepending `map`, being consequently more efficient.
+The following examples illustrate how it works:
+
+```ruby
+(1..5).to_h { |x| [x, x % 3] } #=> {1=>1, 2=>2, 3=>0, 4=>1, 5=>2}
+[1, 1, 2, 4].to_h { |x| [x, true] } #=> {1=>true, 2=>true, 4=>true}
+```
+
+
+## Endless range
+
+Ruby 2.6 introduces endless ranges like `(1..)`, `(74..)` and `(1..nil)`, whose size is infinite:
+
+```ruby
+(1..).size => Infinity
+```
+
+It provides a nice alternative to `[1..-1]` to retrieve a slice up to the end of an Array or String:
+
+```ruby
+[1, 2, 3, 4, 5][3..] => [4, 5]
+'hello world'[6..] => "world"
+```
+
+It can also be combined with other methods to produce such elegant code:
+
+```ruby
+# Selects from an array a range and from an element to the end
+[0, 1, 2, 3, 4, 5, 6].values_at(1..3, 5..) #=> [1, 2, 3, 5, 6]
+
+# Iterates over more than one array at the same time with index
+[:a, :b, :c].zip([10, 37, 30], 1..) { |x1, x2, index| puts "#{index}: #{x1} #{x2}" }
+
+# Multiples of π less than 100
+(1..).lazy.map { |x| x * Math::PI }.take_while{ |x| x < 100 }.force
+```
+
+Last, it can be used to write infinit loops with index: `(1..).each { |n| ... }`, however we had already several alternatives to do this.
+I personally find the following ones more readable:
+
+```ruby
+1.step { |n| ... }
+n = 1; loop { ...; n += 1 }
+```
+
+<small>
+**Note:** Be careful when trying infinite ranges, as if you iterate over a range (for example with `map`) and forget `lazy` (or to stop it for instance with `break`), it may consume all the memory of your computer, as it happened to me. :sweat:
+You can use [`ulimit`](https://ss64.com/bash/ulimit.html){:target="_blank"} to limit the memory available for the console where you execute `irb` when playing with it to avoid this (on Linux and macOS). :nerd_face:
+</small>
+
+
+## Range#=== uses cover? instead of include?
+
+Although Matz always aims to prioritize backwards compatibility, in this case performance has won.
+`Range#===` uses now `cover?` instead of `include?` to check if an object is an element of the range.
+This is a reasonable but also **breaking** change, which modifies the behaviour of statements like:
+
+```ruby
+(Date.today..(Date.today + 1)) === DateTime.now #=> true (false in Ruby 2.5)
+```
+
+Take into account that `Range#===` is used in `case`, so the following example also change its behaviour:
+
+```ruby
+case DateTime.now
+when (Date.today..(Date.today + 1))
+  'you are in Ruby 2.6!'
+else
+  'update to Ruby 2.6'
+end
+```
+
+
+## Proc#<< & Proc#>>
+
+We can now compose procs both from left to right (`>>`) and from right to left (`<<`):
+
+```ruby
+double = proc { |x| x * 2 }
+increment = proc { |x| x + 1 }
+(double >> increment).call(2) #=> 5
+(double << increment).call(2) #=> 6
+```
+
+Procs with multiple arguments are also supported:
+
+```ruby
+f = proc { |x, y| x + y }
+g = proc { |x, y| [x * 2, -(y * 3)] }
+(f << g).call(2, 1) #=> 1
+```
+
+## Enumerator#+ and Enumerable#chain
+
+Ruby 2.6 introduces `Enumerator::Chain`, a new class to represent a chain of enumerables that works as a single enumerator as well as methods to create chain of enumerables: `Enumerable#chain` and `Enumerator#+`:
+
+```ruby
+chain = (1..3).chain([7, 8]) #=> #<Enumerator::Chain: [1..3, [7, 8]]>
+chain.to_a #=> [1, 2, 3, 7, 8]
+
+chain = (1..3).each + [7, 8] #=> #<Enumerator::Chain: [#<Enumerator: 1..3:each>, [7, 8]]>
+chain.map { |x| x * 2 } #=> [2, 4, 6, 14, 16]
+```
+
+## Dir#each_child & Dir#children
+
+The `Dir` class had already the class methods `children` and `each_child`.
+Ruby 2.6 add the equivalent instance methods:
+
+```ruby
+d = Dir.new("/home/ana") #=> #<Dir:/home/ana/>
+d.children #=> [".config", "bin", ".gitignore", ".vimrc", "github", "cat_pictures", ".bashrc", "VirtualBox VMs"]
+```
+
+
+## non-ASCII constant names
+
+Constant names can now start with non-ASCII capital letters.
+I am not sure how useful this is, but you can do funny things like:
+
+```ruby
+class Σ♥²; end
+```
+
+
+In few days, you can update to Ruby 2.6 and have fun too! :wink:
+

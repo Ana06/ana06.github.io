@@ -1,0 +1,295 @@
+Education:
+  - term: Aug 2019 - Dec 2020
+    title: "Master of Science in Computer Science, Theory track"
+    company: Columbia University
+    location: New York, USA
+    details:
+      - "Courses: Advanced Algorithms, Computational Complexity, Advanced Cryptography, Malware & Reverse Engineering"
+    score: "GPA: 3.67/4"
+    featured: true
+
+  - term: Sep 2011 - Jul 2016
+    title: "Bachelor's Degree in Computer Science and Engineering"
+    company: Universidad Complutense de Madrid
+    location: Madrid, Spain
+    score: "GPA: 9.04/10, top 10% of graduating class"
+    featured: true
+    media:
+      name: Transcripts
+      icon: "fas fa-arrow-circle-down"
+      url: "/documents/AnaMariaMartinez-CS-set.pdf"
+
+  - term: Sep 2011 - Jul 2016
+    title: "Bachelor's Degree in Mathematics"
+    company: Universidad Complutense de Madrid
+    location: Madrid, Spain
+    score: "GPA: 8.11/10"
+    featured: true
+    media:
+      name: Transcripts
+      icon: "fas fa-arrow-circle-down"
+      url: "/documents/AnaMariaMartinez-M-set.pdf"
+
+  - term: Sep 2009 - Jun 2011
+    title: "Technological Baccalaureate"
+    score: Graduated with Honors
+    company: IES Lázaro Cárdenas
+    location: Madrid, Spain
+
+
+Experience:
+  - term: May - Aug 2020
+    title: Reverse Engineering Intern
+    company: FireEye
+    location: Remote
+    featured: true
+
+  - term: Sep 2016 - Jul 2019
+    title: Full-Stack Software Engineer in Open Build Service (OBS)
+    company: SUSE
+    location: Nuremberg, Germany
+    details:
+      - "Worked on a Ruby on Rails web application to build and distribute Linux packages: designed and implemented features, wrote tests (e.g. unit, property and mutant testing), fixed bugs, refactored code and improved performance."
+      - "Used Ruby, MySQL, PostgreSQL, RSpec, JavaScript, jQuery, HTML, Bootstrap, DataTables, Git, Linux, Docker, Travis"
+      - "Carried out code reviews, technical interviews, hold talks and mentored colleagues and students in a remote SCRUM team."
+    featured: true
+
+  - term: Apr - Aug 2016
+    title: Google Summer of Code - Software Developer
+    company: openSUSE
+    featured: true
+    details:
+      - "Worked on a Ruby on Rails web application to organize events: redesigned the schedule and implemented new features."
+    location: Remote
+    media:
+      name: Blog
+      icon: "fab fa-wordpress"
+      url: "https://gsocwithopensuse.wordpress.com"
+
+  - term: Nov 2015 - Jun 2016
+    title: Spanish government fellowship to carry out research
+    company: Universidad Complutense de Madrid
+    location: Madrid, Spain
+    featured: true
+    details:
+      - "Worked on a big data project with the San Juan de Dios hospital to predict bipolar disorder crisis. Focused on data collection and storage: design, implementation and usability testing of an Android app using MongoDB."
+
+  - term: Jun - Aug 2015
+    title: Santander SME internship fellowship - Software Developer
+    company: Socialmenta
+    location: Madrid, Spain
+
+  - term: Summer 2013, Summer 2014
+    title: Leisure time monitor in an English summer camp for children
+    company: GADER Formación y Eventos, Utopía XXI
+    location: Madrid, Spain
+
+  - term: 2013 - 2014
+    title: English teacher
+    company: Utopía XXI
+    location: Madrid, Spain
+
+  - term: 2009 - 2011
+    title: Chess teacher
+    company: Collado Villalba Chess Club
+    location: Madrid, Spain
+
+
+Honors_&_Awards:
+  - term: 2018
+    title: Fellowship to pursue postgraduate studies at North American universities
+    company: la Caixa Banking Foundation
+    featured: true
+
+  - term: 2016
+    title: Excellence Grant for high academic performance university students
+    company: Community of Madrid
+    featured: true
+
+
+contributions:
+  projects:
+    - title: "OBS"
+      commits-url: "openSUSE/open-build-service"
+
+    - title: "Ruby"
+      prs-url: "ruby/ruby"
+
+    - title: "Rails"
+      commits-url: "rails/rails"
+
+    - title: "Rantly"
+      commits-url: "rantly-rb/rantly"
+
+    - title: "OSEM"
+      commits-url: "openSUSE/osem"
+
+    - title: "software-o-o"
+      commits-url: "openSUSE/software-o-o"
+
+    - title: "Rubocop"
+      commits-url: "bbatsov/rubocop"
+
+    - title: "Jekyll"
+      commits-url: "jekyll/jekyll"
+
+    - title: "Trollolo"
+      commits-url: "openSUSE/trollolo"
+
+    - title: "Bunny"
+      commits-url: "ruby-amqp/bunny"
+
+    - title: "HAML-Lint"
+      commits-url: "brigade/haml-lint"
+
+    - title: "GitCop"
+      prs-url: "bkuhlmann/git-cop"
+  general:
+    - top 4% of active users in Stack Overflow in 2018 and top 6% in 2019
+    - Mentor/Org admin in Google Summer of Code for openSUSE/FOSDEM 2017-2019
+    - openSUSE Board member 2018-2019
+
+
+# my_projects:
+#   - title: "Personal page"
+#     project-url: "Ana06/ana06.github.io"
+
+#   - title: "Solutions to programing challenges"
+#     project-url: "Ana06/programing-challenges"
+
+#   - title: "Android app to collect medical data"
+#     project-url: "Ana06/medical-data-android"
+
+#   - title: "Solution of ODE with MATLAB"
+#     project-url: "Ana06/ode"
+
+#   - title: "A C-like language compiler to Pascal in Java"
+#     project-url: "Ana06/C-like-compiler"
+
+#   - title: "Interactive prototype of a messaging mobile app"
+#     url: "https://www.youtube.com/watch?v=iCR0IikbKpw"
+
+#   - title: "Text decoder written in Haskell"
+#     project-url: "Ana06/text-decoder"
+
+#   - title: "Function graphing with VHDL over a FPGA"
+#     project-url: "Ana06/function-graphing-FPGA"
+
+
+latest_invited_talks:
+  - title: The Biggest Mobprogramming Session Ever
+    conference: RubyConfBY 2019 (Minsk, Belarus)
+    url: https://youtu.be/lFWi_JzVFpw
+    short-url: http://ana06.me/1s9
+    date: "2019-04-06"
+    attendees: 250
+    featured: true
+
+  - title: Why open source? (Spanish)
+    conference: Universidad Complutense de Madrid 2018 (Madrid, Spain)
+    url: https://youtu.be/qlIUMDafHEs?t=22
+    short-url: http://ana06.me/1kt
+    date: "2018-10-29"
+    attendees: 300
+    featured: true
+
+  - title: Let’s Refactor Some Ruby Code
+    conference: European Ruby Conference (EuRuKo) 2018 (Vienna, Austria)
+    url: https://youtu.be/jUc8InwoA-E?t=2m54s
+    short-url: http://ana06.me/1ku
+    date: "2018-08-24"
+    attendees: 500
+    featured: true
+
+  - title: Why should you get involved in open source?
+    conference: COSCUP x GNOME.Asia x openSUSE.Asia 2018 (Taipei, Taiwan)
+    url: https://events.opensuse.org/conference/summitasia18/program/proposal/2053
+    short-url: http://ana06.me/1kv
+    date: "2018-08-11"
+    attendees: 1400
+
+  - title: Let’s Refactor Some Ruby Code
+    conference: Brighton Ruby 2018 (Brighton, England)
+    url: https://brightonruby.com/2018/lets-refactor-some-ruby-code-ana-martinez
+    short-url: http://ana06.me/1kw
+    date: "2018-07-06"
+    attendees: 300
+
+  - title: Keep calm and refactor OBS
+    conference: openSUSE Conference 2018 (Prague, Czech Republic)
+    url: https://events.opensuse.org/conference/oSC18/program/proposal/1690
+    short-url: http://ana06.me/1kx
+    date: "2018-05-25"
+    attendees: 300
+
+
+  - title: Getting started as an open source contributor
+    conference: openSUSE.Asia Summit 2017 (Tokyo, Japan)
+    url: https://events.opensuse.org/conference/summitasia17/program/proposal/1586
+    short-url: http://ana06.me/1ky
+    date: "2017-10-22"
+    attendees: 150
+
+  - title: Virus competition (Core War workshop)
+    conference: openSUSE Conference 2017 (Nurenberg, Germany)
+    url: https://events.opensuse.org/conference/oSC17/program/proposal/1326
+    short-url: http://ana06.me/1kz
+    date: "2017-05-27"
+    attendees: 300
+
+  - title: OBS in numbers
+    conference: openSUSE Conference 2017 (Nurenberg, Germany)
+    url: https://events.opensuse.org/conference/oSC17/program/proposal/1388#2
+    short-url: http://ana06.me/1l0
+    date: "2017-05-26"
+    attendees: 300
+
+  - title: First steps in a Big Data project (Spanish)
+    conference: Summer University Complutense school 2016 (Madrid, Spain)
+    date: "2016-07"
+
+
+other_talks:
+  - title: Property testing
+    conference: Ruby Unconf Hamburg 2018 (Hamburg, Germany)
+    url: https://youtu.be/FSrNXI1SyCg
+    date: "2018-05-05"
+    featured: true
+    attendees: 200
+
+
+Certificates:
+  - term: April 2018
+    title: SUSE Certified Administrator in Enterprise Linux 12
+    company: SUSE
+    featured: true
+  - term: Sep 2013
+    title: Leisure time monitor certificate
+    company: Community of Madrid
+  - term: Sep 2009
+    title: Chess monitor certificate
+    company: FMA (Madrid Chess Federation)
+
+
+languages:
+  - name: Spanish
+    level: Native speaker
+  - name: English
+    level: C2
+    certificates:
+      - TOEFL iBT with score of 104 out of 120 by ETS in November 2018
+      - Certificate of Proficiency in English (CPE) by Cambridge University in June 2016
+  - name: German
+    level: C1
+    certificates:
+      - Goethe-Zertifikat C1 in July 2019
+
+
+personal:
+  text: "I am interested in programming challenges, theoretical CS and security. In my free time, I contribute to Open Source, write in my blog (http://ana06.me/1zk), attend conferences and paint (http://ana06.me/1zm)."
+  activities:
+    hike: https://www.komoot.com/user/824085591748/tours?type=recorded
+    hiking: https://www.komoot.com/user/824085591748/tours?type=recorded
+    cook: https://recetariodeana.wordpress.com
+    cooking: https://recetariodeana.wordpress.com
+
