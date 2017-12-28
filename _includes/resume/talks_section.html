@@ -1,0 +1,28 @@
+{% for talk in include.talks %}
+<div class="row{% unless talk.featured %} d-none no-featured-{{ include.type }}{% endunless %}">
+  <div class="col-12 col-md-12 col-lg-12 .col-xl-12">
+    <h6 class="resume">
+      {% if talk.url %}
+      <a href="{{ talk.url }}" target="_blank" title="{{ talk.title }}">
+       {{ talk.title }}
+      </a>
+      {% else %}
+      {{ talk.title }}
+      {% endif %}
+      <small>
+      - {{ talk.conference }}
+      {% if talk.attendees %}
+        - {{ talk.attendees }} attendees
+      {% endif %}
+      </small>
+    </h6>
+
+    <hr>
+  </div>
+</div>
+{% endfor %}
+
+{% assign no_featured_talks = include.talks | where_exp: 'talk', 'talk.featured != true' %}
+{% if no_featured_talks.size > 0 %}
+<a href="#" onclick="more(event, this);" class="float-right" data-type="{{ include.type }}">more</a>
+{% endif %}

@@ -1,0 +1,27 @@
+{% assign today = site.time | date: "%Y-%m-%d" %}
+{% assign upcoming_talks = site.data.cv.latest_invited_talks | where_exp: 'talk', 'talk.date > today' | sort: 'date' %}
+{% assign invited_talks = site.data.cv.latest_invited_talks | where_exp: 'talk', 'talk.date <= today'  | sort: 'date' | reverse %}
+{% assign other_talks = site.data.cv.other_talks | sort: 'date' | reverse %}
+
+<div class="card border-secondary post-card">
+  <h5 class="card-header text-white bg-secondary border-secondary">Talks</h5>
+  <div class="card-body">
+    <h5 class="mt-3 mb-0"><u>Invited talks</u></h5>
+    <div class="card-body">
+      {% if upcoming_talks.size > 0 %}
+        <h6 class="mt-3 mb-4"><u>Upcomming talks</u></h6>
+        {% include resume/talks_section.html talks=upcoming_talks type='upcomming-talks' %}
+        <h6 class="mt-3 mb-4"><u>Given talks</u></h6>
+      {% endif %}
+
+      {% include resume/talks_section.html talks=invited_talks type='invited-talks' %}
+    </div>
+
+    {% if other_talks.size > 0 %}
+      <h5 class="mt-2 mb-0"><u>Other talks</u></h5>
+      <div class="card-body">
+        {% include resume/talks_section.html talks=other_talks type='other-talks' %}
+      </div>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,131 @@
+---
+layout: post
+title:  "Why nobody speaks about dig"
+date:   "2018-01-07"
+tags:
+  - technical
+  - Ruby
+  - Ruby on Rails
+reads: "2500+"
+description: "It is already 2 years since Ruby 2.3 was released. While the controversial `&.`, which is claimed to allow writing incomprehensible code, has become really popular in blog post and conferences, we have heard very little about the `Hash#dig` and `Array#dig` methods. Those methods were mentioned together in the release notes, as both try to make easier dealing with `nil` values. But why is then the `dig` method not that \"popular\"? Can we after two years say something new about it? And the most important part, should we start using it, if we haven't use it until now? :thinking:"
+
+---
+
+It is already 2 years since Ruby 2.3 was released. While the controversial `&.`, which is claimed to allow writing incomprehensible code, has become really popular in blog post and conferences, we have heard very little about the `Hash#dig` and `Array#dig` methods. Those methods were mentioned together in the [release notes](https://www.ruby-lang.org/en/news/2015/12/25/ruby-2-3-0-released){:target="_blank"}, as both try to make easier dealing with `nil` values. But why is then the `dig` method not that "popular"? Can we after two years say something new about it? And the most important part, should we start using it, if we haven't use it until now? :thinking:
+
+
+### What is it?
+
+First things, first, what the method does? It is normal in Ruby that we have nested fields in hashes, for example in Rails parameters, and that we need to ensure that a parameter exits before navigating to the next one. Normally we would do something like:
+
+```ruby
+params[:user] && params[:user][:address] && params[:user][:address][:street] && params[:user][:address][:street][:number]
+```
+
+We have to admit that is not very elegant. But with the new `Hash#dig` we can just write:
+
+```ruby
+params.dig(:user, :address, :street, :number)
+```
+
+So, as the [Ruby documentation](http://ruby-doc.org/core-2.3.0_preview1/Hash.html#method-i-dig){:target="_blank"} says it retrieves the value object corresponding to the each key objects repeatedly. And similarly for the `Array#dig` method. We would write `array.dig(0, 1, 1)` instead of `array[0][1][1]`.
+
+
+
+
+
+### What else can we say?
+
+The first thing I wondered is if they are really equivalent to what we previously had. For example:
+
+```ruby
+params = { "user": { name: "Nicolas Cage", married: false } }
+  => {:user=>{:name=>"Nicolas Cage", :married=>false}}
+
+params[:user] && params[:user][:married] && params[:user][:married][:date]
+  => false
+
+params.dig(:user, :married, :date)
+  => TypeError: FalseClass does not have #dig method
+             from (irb):6:in `dig'
+             from (irb):6
+             from /usr/bin/irb.ruby2.4:11:in `<main>'
+```
+
+You can see in this example, that our new method raised an exception, when our code used to work. But I would say that the fact that this work for the old case is unexpected and can cause that we miss bugs in our code. We wanted to return the date of the marriage, and we hadn't go so far in the nested hash but we have got a result anyway. But it is even worse, because the first option could also raise an exception for a similar case while `Hash#dig` keeps the same behaviour:
+
+```ruby
+params = { "user": { name: "Nicolas Cage", married: true } }
+  => {:user=>{:name=>"Nicolas Cage", :married=>true}}
+
+params[:user] && params[:user][:married] && params[:user][:married][:date]
+  => NoMethodError: undefined method `[]' for true:TrueClass
+            from (irb):9
+            from /usr/bin/irb.ruby2.4:11:in `<main>'
+params.dig(:user, :married, :date)
+  => TypeError: TrueClass does not have #dig method
+             from (irb):10:in `dig'
+             from (irb):10
+             from /usr/bin/irb.ruby2.4:11:in `<main>'
+```
+
+
+And we can even find more strange cases. The method `str[match_str]` allow us to find curious examples when using strings as key, such as:
+
+
+```ruby
+params = { "user" => "Nicolas Cage" } => {"user"=>"Nicolas Cage"}
+
+params.dig("user","age") => TypeError: String does not have #dig method
+
+params["user"] && params["user"]["age"] => "age"
+```
+
+and the same happens when using integers as key:
+
+```ruby
+params.dig("user",1) => TypeError: String does not have #dig method
+
+params["user"] && params["user"][1] => "i"
+```
+
+And arrays also suffer from this strange differences in the case of numbers:
+
+```ruby
+array=["hola"] => ["hola"]
+
+array.dig(0,1) => TypeError: String does not have #dig method
+
+array[0] && array[0][1] => "o"
+```
+
+<br>
+And how does `try` behave? It always returns `nil` without letting us knowing how deep in the hash it failed:
+
+```ruby
+params.try(:user).try(:married).try(:date)                                  
+  => nil
+```
+
+`try` is coherent, but take into account that it is only available in Rails.
+
+This all show us that refactoring the code won't be straightforward as this three options, some time presented as equivalent, are not exactly equivalent. 
+
+### Why is it not popular?
+
+As we have seen, this new methods can be really useful. But why are they then not popular?
+
+The first reason is the one we have already elaborated in, it is not equivalent to what we had before, which implies that things could start failing if we refactor old code.
+
+Another problem can be the lack of the documentation, what we can see illustrated in the following Stack Overflow post: [How do I use `Array#dig` and `Hash#dig` introduced in Ruby 2.3?](https://stackoverflow.com/questions/34346653/how-do-i-use-arraydig-and-hashdig-introduced-in-ruby-2-3){:target="_blank"} :joy: And to be honest even the [release notes](https://www.ruby-lang.org/en/news/2015/12/25/ruby-2-3-0-released){:target="_blank"} seem to be confusing to me. What is meant by "_`Array#dig` and `Hash#dig` are also added. Note that this behaves like `try!` of Active Support, which specially handles only nil._"?
+
+And another good reason that can cause that this method has been unnoticed, is what I already mentioned at the beginning, that the controversial `&.` has made that almost nobody has noticed this beautiful method. And this just because we as humans tend to put more emphasis on complains.
+
+
+### Conclusion
+
+It seems that the `Hash#dig` and `Array#dig` methods can make our lives easier and help us to detect errors. The best way to increase their use and to ensure we use them when possible in our projects is to create a [Rubocop](https://github.com/bbatsov/rubocop){:target="_blank"} cop which supports autocorrection. :grimacing: I already opened an [issue](https://github.com/bbatsov/rubocop/issues/5332){:target="_blank"} for it, but the fact that both implementations are not equivalent makes that the autocorrection or even the implementation of the cop are not possible. However, it seems that this was already implemented in [salsify_rubocop](https://github.com/salsify/salsify_rubocop/blob/master/lib/rubocop/cop/salsify/style_dig.rb){:target="_blank"}. In this gem, [Rubocop](https://github.com/bbatsov/rubocop){:target="_blank"} is extended with a new `Dig` cop. This cop enforces `my_hash.dig('foo', 'bar')` over `my_hash['foo']['bar']` and `my_hash['foo'] && my_hash['foo']['bar']`. It also support autocorrection.
+
+Last but not least, I would like to share another blog post about `Hash#dig`, which discusses diferent topics to the ones here, such as the efficiency of `Hash#dig`: [Ruby 2.3 dig Method - Thoughts and Examples](https://www.tiagoamaro.com.br/2016/08/27/ruby-2-3-dig){:target="_blank"}.
+
+And that was all. Start taking profit of the already old `Hash#dig` and `Array#dig` methods and it may be that soon they become as popular as they deserve! :wink:

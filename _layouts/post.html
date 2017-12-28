@@ -1,0 +1,84 @@
+---
+layout: default
+---
+<h1 class="text-center title">{{ page.title | escape }}</h1>
+<hr class="title mb-2">
+<div class="text-center mb-4">
+  <span class="post-date">
+    ~
+    <span>{{ page.date | date_to_long_string }}</span>
+    ~
+  </span>
+  {% for tag in page.tags %}
+
+  <a href="/blog/tag/{{ tag | replace: ' ', '_' }}" class="badge badge-primary post-tag">{{ tag }}</a>
+
+  {% endfor %}
+  {% if page.reads %}
+  <span class="badge post-tag badge-info">{{page.reads}} reads</span>
+  {% endif %}
+</div>
+
+
+<div class="mb-2">
+  <div class="card-body">
+    {{ content }}
+
+    {% if page.more-info %}
+    <div class="alert alert-light alert-more-info text-center">
+      {{ page.more-info | markdownify }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}&via=anamma_06&related=anamma_06" rel="nofollow" target="_blank" title="Share on Twitter" class="badge badge-primary badge-twitter">
+  <i class="fab fa-twitter fa-lg"></i>&nbsp;&nbsp; Share on Twitter
+</a>
+
+<hr class="hr-next-top">
+<div class="row" class="next-row">
+  {% if page.previous %}
+  <div class="col-6">
+   <a href="{{ page.previous.url}}">
+     <i class="fas fa-angle-double-left"></i>
+     {{ page.previous.title }}
+   </a>
+  </div>
+  {% endif %}
+
+  {% if page.next %}
+  <div class="col-6 text-right">
+   <a href="{{ page.next.url}}">
+     {{ page.next.title }}
+     <i class="fas fa-angle-double-right"></i>
+   </a>
+  </div>
+  {% endif %}
+</div>
+<hr class="mb-5">
+
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+   */
+  var disqus_config = function () {
+      this.page.url = '{{ site.url }}{{ page.url }}';
+      this.page.identifier = '{{ page.id }}';
+  };
+
+  (function() {  // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://ana06.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+{% include license.html %}

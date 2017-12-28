@@ -1,0 +1,22 @@
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings - Accessible via {{ site.myvariable }}.
+title: "Ana María Martínez Gómez"
+description: "Ana María Martínez Gómez personal page and blog"
+url: "http://anamaria.martinezgomez.name"
+
+# Build settings
+markdown: kramdown
+timezone: Europe/Berlin
+
+plugins:
+  - jemoji
+  - jekyll-feed
+  - jekyll-redirect-from
+
+# Exclude from processing.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - cv_latex
