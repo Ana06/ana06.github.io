@@ -1,0 +1,294 @@
+html {
+  position: relative;
+  min-height: 100%;
+  overflow-y: scroll !important; }
+
+body {
+  /* Padding top: navbar height (72) + 10*/
+  padding-top: 82px;
+  /* Margin bottom: footer height */
+  padding-bottom: 110px;
+  font-family: 'Lato'; }
+  
+  @media (min-width: 576px) {
+    body {
+    /* Padding top: navbar height (72) + 15*/
+    padding-top: 87px; }}
+
+  @media (min-width: 768px) {
+    body {
+    /* Padding top: navbar height (72) + 20*/
+    padding-top: 92px; }}
+
+  @media (min-width: 992px) {  
+    body {
+      /* Padding top: navbar height (72) + 25*/
+      padding-top: 97px; }}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  font-family: 'Montserrat'; }
+
+img{
+  max-width: 100%;
+}
+
+h6.resume small{
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Lato'; }
+
+hr.title {
+  width: 700px;
+  max-width: 70%;
+  border-width: 4px;
+  border-color: #00CDB7;
+  margin-top: 15px; }
+
+.container a {
+  font-weight: 600; }
+
+.license a {
+  font-weight: normal; }
+
+.text-center {
+  text-align: center !important; }
+
+/* Colors - This colors are taken from https://startbootstrap.com/template-overviews/freelancer */
+
+a {
+  color: #18BC9C; }
+  a:focus, a:hover, a:active {
+  color: #128f76; }
+  a:link {
+    text-decoration: none;}
+
+.bg-primary {
+  background-color: #18BC9C !important; }
+
+.bg-secondary {
+  background-color: #2C3E50 !important; }
+
+.text-primary {
+  color: #18BC9C !important; }
+
+.text-secondary {
+  color: #2C3E50 !important; }
+
+.border-secondary {
+  border-color: #2C3E50 !important;
+  border-width: 1px;
+}
+
+.btn-primary {
+  background-color: #18BC9C !important;
+  border-color: #18BC9C !important; }
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: #128f76 !important;
+    border-color: #128f76 !important; }
+
+.btn-secondary {
+  background-color: #2C3E50;
+  border-color: #2C3E50; }
+  .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
+    background-color: #1a252f;
+    border-color: #1a252f; }
+
+.badge-primary{
+  background-color: #18BC9C !important;
+  color: #fff;
+}
+/* Navbar - Taken from https://startbootstrap.com/template-overviews/freelancer */
+
+#mainNav {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: 700 !important;
+  font-family: 'Montserrat'; }
+  #mainNav .navbar-brand {
+    color: #fff; }
+  #mainNav .navbar-brand-long {
+    display: none; }
+  #mainNav .navbar-nav {
+    margin-top: 1rem;
+    letter-spacing: 0.0625rem; }
+    #mainNav .navbar-nav li.nav-item a.nav-link {
+      color: #fff; }
+      #mainNav .navbar-nav li.nav-item a.nav-link:hover {
+        color: #18BC9C; }
+      #mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
+        color: #fff; }
+      #mainNav .navbar-nav li.nav-item a.nav-link.active {
+        color: #18BC9C; }
+  #mainNav .navbar-toggler {
+    font-size: 80%;
+    padding: 0.8rem; }
+  
+  @media (min-width: 400px) {
+    #mainNav .navbar-brand-short {
+      display: none; }
+    #mainNav .navbar-brand-long {
+      display: initial; }
+    }
+
+  @media (min-width: 992px) {
+    #mainNav {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
+      -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
+      transition: padding-top 0.3s, padding-bottom 0.3s; }
+      #mainNav .navbar-brand {
+        font-size: 2em;
+        -webkit-transition: font-size 0.3s;
+        -moz-transition: font-size 0.3s;
+        transition: font-size 0.3s; }
+      #mainNav .navbar-nav {
+        margin-top: 0; }
+      #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
+        color: #fff !important;
+        background: #18BC9C;}
+        #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
+          color: #fff;
+          background: #18BC9C; }
+    #mainNav.navbar-shrink {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem; }
+      #mainNav.navbar-shrink .navbar-brand {
+        font-size: 1.5em; } }
+
+a.cursor-default {
+  cursor: default; }
+
+/* Footer */
+
+.btn-social {
+  width: 2.8rem;
+  height: 2.75rem;
+  line-height: 2.7rem;
+  font-size: 0.85rem;
+  padding: 0px !important;
+  font-weight: normal !important; }
+
+.btn-social-github {
+  font-size: 1rem;
+  line-height: 2.6rem; }
+
+.btn-social-stack-overflow {
+  font-size: 0.95rem;
+  line-height: 2.4rem; }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: black; }
+  .footer > .container {
+    padding: 15px; }
+
+.footer .btn {
+  border-width: 2px; }
+
+/* About me */
+
+h1.title {
+  margin-top: 25px; }
+
+.ana-img {
+  width: 100%;
+  padding: 10px 10px 25px 10px; }
+
+
+/* Blog */
+
+.post-card{
+  margin-bottom: 30px; }
+
+.blog-date {
+  color: #C9C8C8; }
+
+.post-tag {
+  margin-left: 5px; }
+
+.post-date {
+  font-weight: bold;
+  color: #848484; }
+
+.post-content > .card-body {
+  padding-bottom: 5px; }
+
+.badge-twitter {
+  padding: 9px 10px 8px 10px;
+  margin-bottom: 20px; }
+
+.image-center{
+  display: block;
+  text-align: center;
+  width: 100%; }
+
+.image-center img, .image-center iframe{
+  max-width: 96%; }
+
+.image-2{
+  margin-bottom: 4px; }
+  @media (min-width: 768px) {
+    .image-2{
+      max-width: 47% !important; }}
+
+.alert-more-info {
+  margin-top: 20px;
+  margin-bottom: 0px !important;
+  color: #585858; }
+  .alert-more-info > p {
+    margin-bottom: 0rem !important; }
+
+.hr-next-top {
+  font-size: 15px; }
+
+.next-row {
+ font-size: 18px; }
+
+/* Resume */
+
+h6.resume{
+  margin-bottom: 2px; }
+
+.more-contributions{
+  display: block; }
+  @media (min-width: 576px) {
+    .more-contributions{
+      display: inline;}
+
+.ul-resume {
+  list-style-type: none;
+  padding-left: 1.7em;
+  margin-bottom: 0; }
+
+.ul-resume li:before {
+  content: '\2d';
+  position: absolute;
+  margin-left: -0.7em; }
+
+p.resume-company{
+  margin-bottom: 0
+}
+
+ul.resume-details-list{
+  list-style-type: circle
+}
+
+ul.resume-details-list {
+  padding-left: 16px;
+  list-style-type: none;
+}
+ul.resume-details-list > li {
+  text-indent: -9px;
+}
+ul.resume-details-list > li:before {
+  content: "- ";
+}

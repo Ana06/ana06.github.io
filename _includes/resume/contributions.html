@@ -1,0 +1,10 @@
+<div class="card border-secondary post-card">
+  <h5 class="card-header text-white bg-secondary border-secondary">Contributions</h5>
+  <div class="card-body">
+    {% include resume/projects.html %}
+    {% for contribution in site.data.cv.contributions.general %}
+    <h6>{{ contribution }}</h6>
+    <hr>
+    {% endfor %}
+  </div>
+</div>
