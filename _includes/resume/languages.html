@@ -1,0 +1,14 @@
+<div class="card border-secondary post-card">
+  <h5 class="card-header text-white bg-secondary border-secondary">Languages</h5>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12">
+        <h6>
+        {% for language in site.data.cv.languages %}
+        {{ language.name }}<span class="font-weight-normal"> ({{ language.level }}){% if language != site.data.cv.languages.last %}, {% endif %}</span>
+        {% endfor %}
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>

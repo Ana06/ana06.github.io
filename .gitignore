@@ -1,0 +1,5 @@
+/_site
+*.aux
+*.log
+*.out
+.bundle/config

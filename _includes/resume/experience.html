@@ -1,0 +1,58 @@
+{% assign title = include.type | replace: '_', ' ' %}
+{% assign elements = site.data.cv[include.type] %}
+{% assign type = include.type | remove: '&' %}
+{% assign no_featured_elements = elements | where_exp: 'elements', 'elements.featured != true' %}
+
+<div class="card border-secondary post-card">
+  <h5 class="card-header text-white bg-secondary border-secondary">{{ title }}</h5>
+  <div class="card-body">
+    {% for element in elements %}
+    <div class="row{% unless element.featured %} d-none no-featured-{{ type }}{% endunless %}">
+      <div class="col-12 col-md-3 col-lg-2 .col-xl-1">
+        <p>
+          <strong>{{ element.term }}</strong>
+        </p>
+      </div>
+
+      <div class="col-12 col-md-9 col-lg-10 .col-xl-11">
+        <h6 class="resume">
+          {{ element.title }}
+
+          {% if element.media %}
+          <a href class="badge badge-primary post-tag" href="{{ element.media.url }}" target="_blank">
+            <i class="{{ element.media.icon }}"></i>
+            {{ element.media.name }}
+          </a>
+          {% endif %}
+        </h6>
+
+        {% if element.score %}<p class="card-text mb-0">{{ element.score }}</p>{% endif %}
+        <p class="resume-company">
+          {% if element.location %}
+          <strong>{{ element.company }}</strong>
+          {% if element.location %}
+          - {{ element.location }}
+          {% endif %}
+          {% else %}
+          {{ element.company }}
+          {% endif%}
+        </p>
+        <ul class="resume-details-list">
+          {% for detail in element.details %}
+          <li>{{ detail }}</li>
+          {% endfor %}
+        </ul>
+
+        {% if element != page.elements.last or no_featured_elements.size == 0 %}
+        <hr>
+        {% endif %}
+      </div>
+    </div>
+
+    {% endfor %}
+
+    {% if no_featured_elements.size > 0 %}
+    <a href="#" onclick="more(event, this);" class="float-right" data-type="{{ type }}">more</a>
+    {% endif %}
+  </div>
+</div>
