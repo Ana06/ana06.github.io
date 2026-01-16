@@ -1,0 +1,12 @@
+*.aux
+*.log
+*.out
+
+# Ignore the local Ruby gems folder
+vendor/
+
+# Ignore Bundler configuration
+.bundle/
+
+# Ignore the generated site
+_site/
